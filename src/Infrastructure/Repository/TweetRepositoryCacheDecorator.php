@@ -58,6 +58,11 @@ class TweetRepositoryCacheDecorator implements TweetRepositoryInterface
         );
     }
 
+    public function getTweetsForAuthorIds(array $authorIds, int $count): array
+    {
+        return $this->tweetRepository->getTweetsForAuthorIds($authorIds, $count);
+    }
+
     private function getCacheKey(int $page, int $perPage): string
     {
         return "tweets_{$page}_$perPage";

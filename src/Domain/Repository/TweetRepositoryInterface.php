@@ -13,4 +13,5 @@ interface TweetRepositoryInterface
      * @return TweetModel[]
      */
     public function getTweetsPaginated(int $page, int $perPage): array;
+    public function getTweetsForAuthorIds(array $authorIds, int $count): array;
 }
