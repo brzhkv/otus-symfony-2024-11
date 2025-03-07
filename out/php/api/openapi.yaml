@@ -1,0 +1,1273 @@
+openapi: 3.0.0
+info:
+  description: This is an awesome app!
+  title: My App
+  version: 1.0.0
+servers:
+- url: /
+security:
+- JWT: []
+tags:
+- description: PhoneUser
+  name: PhoneUser
+- description: Subscription
+  name: Subscription
+- description: User
+  name: User
+- description: feed
+  name: feed
+paths:
+  /api-platform/phone_users:
+    get:
+      deprecated: false
+      description: Retrieves the collection of PhoneUser resources.
+      operationId: api_phone_users_get_collection
+      parameters:
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: The collection page number
+        explode: false
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          type: integer
+        style: form
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: login
+        required: false
+        schema:
+          type: string
+        style: form
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: "order[login]"
+        required: false
+        schema:
+          default: asc
+          enum:
+          - asc
+          - desc
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/api_phone_users_get_collection_200_response'
+          description: PhoneUser collection
+      summary: Retrieves the collection of PhoneUser resources.
+      tags:
+      - PhoneUser
+    post:
+      deprecated: false
+      description: Creates a PhoneUser resource.
+      operationId: api_phone_users_post
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/PhoneUser.jsonld'
+        description: The new PhoneUser resource
+        required: true
+      responses:
+        "201":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/PhoneUser.jsonld'
+          description: PhoneUser resource created
+        "400":
+          description: Invalid input
+        "422":
+          description: Unprocessable entity
+      summary: Creates a PhoneUser resource.
+      tags:
+      - PhoneUser
+  /api-platform/phone_users/{id}:
+    delete:
+      deprecated: false
+      description: Removes the PhoneUser resource.
+      operationId: api_phone_users_id_delete
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: PhoneUser identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: PhoneUser resource deleted
+        "404":
+          description: Resource not found
+      summary: Removes the PhoneUser resource.
+      tags:
+      - PhoneUser
+    get:
+      deprecated: false
+      description: Retrieves a PhoneUser resource.
+      operationId: api_phone_users_id_get
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: PhoneUser identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/PhoneUser.jsonld'
+          description: PhoneUser resource
+        "404":
+          description: Resource not found
+      summary: Retrieves a PhoneUser resource.
+      tags:
+      - PhoneUser
+    patch:
+      deprecated: false
+      description: Updates the PhoneUser resource.
+      operationId: api_phone_users_id_patch
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: PhoneUser identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/PhoneUser'
+        description: The updated PhoneUser resource
+        required: true
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/PhoneUser.jsonld'
+          description: PhoneUser resource updated
+        "400":
+          description: Invalid input
+        "422":
+          description: Unprocessable entity
+        "404":
+          description: Resource not found
+      summary: Updates the PhoneUser resource.
+      tags:
+      - PhoneUser
+  /api-platform/subscriptions:
+    get:
+      deprecated: false
+      description: Retrieves the collection of Subscription resources.
+      operationId: api_subscriptions_get_collection
+      parameters:
+      - allowEmptyValue: true
+        allowReserved: false
+        deprecated: false
+        description: The collection page number
+        explode: false
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          type: integer
+        style: form
+      - allowEmptyValue: false
+        allowReserved: false
+        deprecated: false
+        description: ""
+        explode: false
+        in: query
+        name: follower.login
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/api_subscriptions_get_collection_200_response'
+          description: Subscription collection
+      summary: Retrieves the collection of Subscription resources.
+      tags:
+      - Subscription
+    post:
+      deprecated: false
+      description: Creates a Subscription resource.
+      operationId: api_subscriptions_post
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/Subscription.jsonld'
+        description: The new Subscription resource
+        required: true
+      responses:
+        "201":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Subscription.jsonld'
+          description: Subscription resource created
+        "400":
+          description: Invalid input
+        "422":
+          description: Unprocessable entity
+      summary: Creates a Subscription resource.
+      tags:
+      - Subscription
+  /api-platform/subscriptions/{id}:
+    delete:
+      deprecated: false
+      description: Removes the Subscription resource.
+      operationId: api_subscriptions_id_delete
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: Subscription identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "204":
+          description: Subscription resource deleted
+        "404":
+          description: Resource not found
+      summary: Removes the Subscription resource.
+      tags:
+      - Subscription
+    get:
+      deprecated: false
+      description: Retrieves a Subscription resource.
+      operationId: api_subscriptions_id_get
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: Subscription identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Subscription.jsonld'
+          description: Subscription resource
+        "404":
+          description: Resource not found
+      summary: Retrieves a Subscription resource.
+      tags:
+      - Subscription
+    patch:
+      deprecated: false
+      description: Updates the Subscription resource.
+      operationId: api_subscriptions_id_patch
+      parameters:
+      - allowReserved: false
+        deprecated: false
+        description: Subscription identifier
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/merge-patch+json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+        description: The updated Subscription resource
+        required: true
+      responses:
+        "200":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/Subscription.jsonld'
+          description: Subscription resource updated
+        "400":
+          description: Invalid input
+        "422":
+          description: Unprocessable entity
+        "404":
+          description: Resource not found
+      summary: Updates the Subscription resource.
+      tags:
+      - Subscription
+  /api-platform/users:
+    post:
+      deprecated: false
+      description: Creates a User resource.
+      operationId: api_users_post
+      requestBody:
+        content:
+          application/ld+json:
+            schema:
+              $ref: '#/components/schemas/User.CreateUserDTO.jsonld'
+        description: The new User resource
+        required: true
+      responses:
+        "201":
+          content:
+            application/ld+json:
+              schema:
+                $ref: '#/components/schemas/User.CreatedUserDTO.jsonld'
+          description: User resource created
+        "400":
+          description: Invalid input
+        "422":
+          description: Unprocessable entity
+      summary: Creates a User resource.
+      tags:
+      - User
+  /api/v1/add-followers/{id}:
+    post:
+      operationId: post_app_web_addfollowers_v1__invoke
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: \d+
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AddFollowersDTO'
+        required: true
+      responses:
+        default:
+          description: ""
+  /api/v1/create-subscription/{author}/{follower}:
+    post:
+      operationId: post_app_web_createsubscription_v1__invoke
+      parameters:
+      - explode: false
+        in: path
+        name: author
+        required: true
+        schema:
+          pattern: \d+
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: follower
+        required: true
+        schema:
+          pattern: \d+
+          type: string
+        style: simple
+      responses:
+        default:
+          description: ""
+  /api/v1/user:
+    get:
+      operationId: get_app_web_getuser_v1__invoke
+      responses:
+        default:
+          description: ""
+    post:
+      operationId: post_app_web_createuser_v1__invoke
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDTO'
+        required: true
+      responses:
+        default:
+          description: ""
+  /api/v2/user:
+    post:
+      operationId: post_app_web_createuser_v2__invoke
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserDTO2'
+        required: true
+      responses:
+        default:
+          description: ""
+  /api/v1/user/{id}:
+    delete:
+      operationId: delete_app_web_deleteuser_v1__invoke
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          pattern: \d+
+          type: string
+        style: simple
+      responses:
+        default:
+          description: ""
+    patch:
+      operationId: patch_app_web_updateuserlogin_v1__invoke
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          description: ""
+  /api/v1/get-feed/{id}:
+    get:
+      description: Получение ленты для пользователя
+      operationId: v1GetFeed
+      parameters:
+      - description: Идентификатор пользователя
+        explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: integer
+        style: simple
+      - description: Количество сообщений в ленте
+        explode: true
+        in: query
+        name: count
+        required: false
+        schema:
+          nullable: true
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Response'
+          description: Успешный ответ
+        "400":
+          description: Ошибка валидации
+      tags:
+      - feed
+  /api/v1/get-json-schema/{resource}:
+    get:
+      operationId: get_app_web_getjsonschema_v1__invoke
+      parameters:
+      - explode: false
+        in: path
+        name: resource
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          description: ""
+  /api/v1/get-token:
+    post:
+      operationId: post_app_web_gettoken_v1__invoke
+      responses:
+        default:
+          description: ""
+  /api/v1/get-tweet:
+    get:
+      operationId: get_app_web_gettweet_v1__invoke
+      parameters:
+      - explode: true
+        in: query
+        name: page
+        required: true
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: perPage
+        required: true
+        schema:
+          type: integer
+        style: form
+      responses:
+        default:
+          description: ""
+  /api/v1/get-user-by-login/{login}:
+    get:
+      operationId: get_app_web_getusersbylogin_v1_getuserbylogin
+      parameters:
+      - explode: false
+        in: path
+        name: login
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          description: ""
+  /api/v1/get-users-by-query:
+    get:
+      operationId: get_app_web_getusersbyquery_v1__invoke
+      parameters:
+      - explode: true
+        in: query
+        name: query
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: perPage
+        required: true
+        schema:
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: page
+        required: true
+        schema:
+          type: integer
+        style: form
+      responses:
+        default:
+          description: ""
+  /api/v1/create-phone-user:
+    get:
+      operationId: get_app_web_phoneuserform_v1_create_manageuser
+      responses:
+        default:
+          description: ""
+    post:
+      operationId: post_app_web_phoneuserform_v1_create_manageuser
+      responses:
+        default:
+          description: ""
+  /api/v1/update-phone-user/{id}:
+    get:
+      operationId: get_app_web_phoneuserform_v1_edit_manageuser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          description: ""
+    patch:
+      operationId: patch_app_web_phoneuserform_v1_edit_manageuser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          description: ""
+  /api/v1/post-tweet:
+    post:
+      operationId: post_app_web_posttweet_v1__invoke
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostTweetDTO'
+        required: true
+      responses:
+        default:
+          description: ""
+  /api/v1/refresh-token:
+    post:
+      operationId: post_app_web_refreshtoken_v1__invoke
+      responses:
+        default:
+          description: ""
+  /api/v1/get-user-list:
+    get:
+      operationId: get_app_web_renderuserlist_v1__invoke
+      responses:
+        default:
+          description: ""
+  /api/v1/update-user-avatar-link/{id}:
+    post:
+      operationId: post_app_web_updateuseravatarlink_v1_getuserbylogin
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          description: ""
+  /api/v1/create-user:
+    get:
+      operationId: get_app_web_userform_v1_create_manageuser
+      responses:
+        default:
+          description: ""
+    post:
+      operationId: post_app_web_userform_v1_create_manageuser
+      responses:
+        default:
+          description: ""
+  /api/v1/update-user/{id}:
+    get:
+      operationId: get_app_web_userform_v1_edit_manageuser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          description: ""
+    patch:
+      operationId: patch_app_web_userform_v1_edit_manageuser
+      parameters:
+      - explode: false
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        default:
+          description: ""
+components:
+  schemas:
+    PhoneUser:
+      deprecated: false
+      description: ""
+      properties:
+        phone:
+          type: string
+        id:
+          $ref: '#/components/schemas/PhoneUser_id'
+        login:
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        tweets:
+          items:
+            $ref: '#/components/schemas/Tweet'
+          type: array
+          writeOnly: true
+        authors:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+          writeOnly: true
+        followers:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+          writeOnly: true
+        subscriptionAuthors:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+        subscriptionFollowers:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+        deletedAt:
+          format: date-time
+          readOnly: true
+        avatarLink: {}
+        password:
+          type: string
+        age:
+          type: integer
+        isActive:
+          type: boolean
+        roles:
+          items:
+            type: string
+          type: array
+        token: {}
+        isProtected: {}
+        deletedAtInFuture:
+          format: duration
+          type: string
+          writeOnly: true
+        active:
+          readOnly: true
+          type: boolean
+        userIdentifier:
+          readOnly: true
+          type: string
+        protected:
+          readOnly: true
+          type: boolean
+      type: object
+    PhoneUser.jsonld:
+      deprecated: false
+      description: ""
+      properties:
+        '@context':
+          $ref: '#/components/schemas/PhoneUser_jsonld__context'
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        phone:
+          type: string
+        id:
+          $ref: '#/components/schemas/PhoneUser_id'
+        login:
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+        tweets:
+          items:
+            $ref: '#/components/schemas/Tweet.jsonld'
+          type: array
+          writeOnly: true
+        authors:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+          writeOnly: true
+        followers:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+          writeOnly: true
+        subscriptionAuthors:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+        subscriptionFollowers:
+          items:
+            example: https://example.com/
+            format: iri-reference
+            type: string
+          type: array
+        deletedAt:
+          format: date-time
+          readOnly: true
+        avatarLink: {}
+        password:
+          type: string
+        age:
+          type: integer
+        isActive:
+          type: boolean
+        roles:
+          items:
+            type: string
+          type: array
+        token: {}
+        isProtected: {}
+        deletedAtInFuture:
+          format: duration
+          type: string
+          writeOnly: true
+        active:
+          readOnly: true
+          type: boolean
+        userIdentifier:
+          readOnly: true
+          type: string
+        protected:
+          readOnly: true
+          type: boolean
+      type: object
+    Subscription:
+      deprecated: false
+      description: ""
+      properties:
+        id:
+          allOf:
+          - type: integer
+          - type: string
+          readOnly: true
+        author:
+          example: https://example.com/
+          format: iri-reference
+        follower:
+          example: https://example.com/
+          format: iri-reference
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+      type: object
+    Subscription.jsonld:
+      deprecated: false
+      description: ""
+      properties:
+        '@context':
+          $ref: '#/components/schemas/PhoneUser_jsonld__context'
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          allOf:
+          - type: integer
+          - type: string
+          readOnly: true
+        author:
+          example: https://example.com/
+          format: iri-reference
+        follower:
+          example: https://example.com/
+          format: iri-reference
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+      type: object
+    Tweet:
+      deprecated: false
+      description: ""
+      properties:
+        id:
+          allOf:
+          - type: integer
+          - type: string
+          readOnly: true
+        author:
+          example: https://example.com/
+          format: iri-reference
+        text:
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+      type: object
+    Tweet.jsonld:
+      deprecated: false
+      description: ""
+      properties:
+        '@context':
+          $ref: '#/components/schemas/PhoneUser_jsonld__context'
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          allOf:
+          - type: integer
+          - type: string
+          readOnly: true
+        author:
+          example: https://example.com/
+          format: iri-reference
+        text:
+          type: string
+        createdAt:
+          format: date-time
+          readOnly: true
+          type: string
+        updatedAt:
+          format: date-time
+          readOnly: true
+          type: string
+      type: object
+    User.CreateUserDTO.jsonld:
+      deprecated: false
+      description: ""
+      properties:
+        login:
+          type: string
+        email: {}
+        phone:
+          maxLength: 20
+        password:
+          type: string
+        age:
+          type: integer
+        isActive:
+          type: boolean
+        roles:
+          items:
+            type: string
+          type: array
+      required:
+      - age
+      - isActive
+      - login
+      - password
+      type: object
+    User.CreatedUserDTO.jsonld:
+      deprecated: false
+      description: ""
+      properties:
+        '@context':
+          $ref: '#/components/schemas/PhoneUser_jsonld__context'
+        '@id':
+          readOnly: true
+          type: string
+        '@type':
+          readOnly: true
+          type: string
+        id:
+          type: integer
+        login:
+          type: string
+        avatarLink: {}
+        roles:
+          items:
+            type: string
+          type: array
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        phone: {}
+        email: {}
+      type: object
+    AddFollowersDTO:
+      example:
+        async: false
+        followerLoginPrefix: followerLoginPrefix
+        count: 0
+      properties:
+        followerLoginPrefix:
+          type: string
+        count:
+          type: integer
+        async:
+          default: false
+          type: boolean
+      required:
+      - count
+      - followerLoginPrefix
+      type: object
+    CreateUserDTO:
+      example:
+        phone: phone
+        login: login
+        email: email
+      properties:
+        login:
+          type: string
+        email:
+          nullable: true
+          type: string
+        phone:
+          maxLength: 20
+          nullable: true
+          type: string
+      required:
+      - login
+      type: object
+    CreateUserDTO2:
+      example:
+        password: password
+        phone: phone
+        roles:
+        - roles
+        - roles
+        login: login
+        isActive: true
+        email: email
+        age: 0
+      properties:
+        login:
+          type: string
+        email:
+          nullable: true
+          type: string
+        phone:
+          maxLength: 20
+          nullable: true
+          type: string
+        password:
+          type: string
+        age:
+          type: integer
+        isActive:
+          type: boolean
+        roles:
+          items:
+            type: string
+          type: array
+      required:
+      - age
+      - isActive
+      - login
+      - password
+      - roles
+      type: object
+    PostTweetDTO:
+      example:
+        async: false
+        text: text
+        userId: 0
+      properties:
+        userId:
+          type: integer
+        text:
+          type: string
+        async:
+          default: false
+          type: boolean
+      required:
+      - text
+      - userId
+      type: object
+    Response:
+      example:
+        tweets:
+        - createdAt: createdAt
+          author: author
+          id: 0
+          text: text
+        - createdAt: createdAt
+          author: author
+          id: 0
+          text: text
+      properties:
+        tweets:
+          description: Твиты
+          items:
+            $ref: '#/components/schemas/TweetDTO'
+          type: array
+      required:
+      - tweets
+      type: object
+    TweetDTO:
+      example:
+        createdAt: createdAt
+        author: author
+        id: 0
+        text: text
+      properties:
+        id:
+          type: integer
+        author:
+          description: Автор
+          type: string
+        text:
+          description: Текст твита
+          type: string
+        createdAt:
+          format: "\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}"
+          type: string
+      required:
+      - author
+      - createdAt
+      - id
+      - text
+      type: object
+    api_phone_users_get_collection_200_response_view:
+      example:
+        '@id': string
+        type: string
+        first: string
+        last: string
+        previous: string
+        next: string
+      properties:
+        '@id':
+          format: iri-reference
+          type: string
+        '@type':
+          type: string
+        first:
+          format: iri-reference
+          type: string
+        last:
+          format: iri-reference
+          type: string
+        previous:
+          format: iri-reference
+          type: string
+        next:
+          format: iri-reference
+          type: string
+      type: object
+    api_phone_users_get_collection_200_response_search_mapping_inner:
+      properties:
+        '@type':
+          type: string
+        variable:
+          type: string
+        property: {}
+        required:
+          type: boolean
+      type: object
+    api_phone_users_get_collection_200_response_search:
+      properties:
+        '@type':
+          type: string
+        template:
+          type: string
+        variableRepresentation:
+          type: string
+        mapping:
+          items:
+            $ref: '#/components/schemas/api_phone_users_get_collection_200_response_search_mapping_inner'
+          type: array
+      type: object
+    api_phone_users_get_collection_200_response:
+      properties:
+        member:
+          items:
+            $ref: '#/components/schemas/PhoneUser.jsonld'
+          type: array
+        totalItems:
+          minimum: 0
+          type: integer
+        view:
+          $ref: '#/components/schemas/api_phone_users_get_collection_200_response_view'
+        search:
+          $ref: '#/components/schemas/api_phone_users_get_collection_200_response_search'
+      required:
+      - member
+      type: object
+    api_subscriptions_get_collection_200_response:
+      properties:
+        member:
+          items:
+            $ref: '#/components/schemas/Subscription.jsonld'
+          type: array
+        totalItems:
+          minimum: 0
+          type: integer
+        view:
+          $ref: '#/components/schemas/api_phone_users_get_collection_200_response_view'
+        search:
+          $ref: '#/components/schemas/api_phone_users_get_collection_200_response_search'
+      required:
+      - member
+      type: object
+    PhoneUser_id:
+      anyOf:
+      - type: integer
+      - type: string
+      readOnly: true
+    PhoneUser_jsonld__context_oneOf:
+      additionalProperties: true
+      properties:
+        '@vocab':
+          type: string
+        hydra:
+          enum:
+          - http://www.w3.org/ns/hydra/core#
+          type: string
+      required:
+      - '@vocab'
+      - hydra
+      type: object
+    PhoneUser_jsonld__context:
+      oneOf:
+      - type: string
+      - $ref: '#/components/schemas/PhoneUser_jsonld__context_oneOf'
+      readOnly: true
+  securitySchemes:
+    JWT:
+      description: Value for the Authorization header parameter.
+      in: header
+      name: Authorization
+      type: apiKey
